@@ -16,7 +16,7 @@
 
 :root {
 
-  --primary:#ff7a00;
+  --primary:#C89B2C;
 
   --bg:#f4f4f4;
 
@@ -76,7 +76,7 @@ body.dark ::-webkit-scrollbar-thumb { background: #555; }
 
 /* HEADER */
 
-.header{
+.header {
     background: linear-gradient(
         180deg,
         #F0C84C 0%,
@@ -84,7 +84,20 @@ body.dark ::-webkit-scrollbar-thumb { background: #555; }
         #6E531C 80%,
         #1F1A12 100%
     );
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
 
+.top {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    max-width:1400px;
+    margin:0 auto;
+}
 .top { display:flex; justify-content:space-between; align-items:center; max-width:1400px; margin:0 auto; }
 
 .search { padding:8px 15px; border-radius:8px; border:none; width:250px; outline:none; }
