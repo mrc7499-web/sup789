@@ -1,580 +1,1362 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+
+<html lang="th">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.4">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Zap789 PRO | Perfect Edition</title>
+
+
+
+<style>
+
+:root {
+
+  --primary:#ff7a00;
+
+  --bg:#f4f4f4;
+
+  --card-bg:#ffffff;
+
+  --text:#333;
+
+  --var-bg:#eee;
+
+
+
+  /* Color Palette */
+
+  --blue-soft:#e0f2fe;
+
+  --blue-strong:#0284c7;
+
+  --green-soft:#dcfce7;
+
+  --green-strong:#16a34a;
+
+  --purple-soft:#ede9fe;
+
+  --purple-strong:#6d28d9;
+
+  --pink-soft:#fce7f3;
+
+  --pink-strong:#db2777;
+
+  --red-soft:#fee2e2;
+
+  --red-strong:#dc2626;
+
+}
+
+
+
+body.dark { --bg:#121212; --card-bg:#1e1e1e; --text:#efefef; --var-bg:#333; }
+
+body { margin:0; font-family:sans-serif; background:var(--bg); color:var(--text); }
+
+
+
+/* Custom Scrollbar มินิมอล */
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+
+::-webkit-scrollbar-track { background: transparent; }
+
+::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+
+::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+body.dark ::-webkit-scrollbar-thumb { background: #555; }
+
+
+
+/* HEADER */
+
+.header { background:var(--primary); padding:10px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+.top { display:flex; justify-content:space-between; align-items:center; max-width:1400px; margin:0 auto; }
+
+.search { padding:8px 15px; border-radius:8px; border:none; width:250px; outline:none; }
+
+
+
+/* LAYOUT */
+
+.layout { display:flex; height:calc(100vh - 55px); }
+
+
+
+.sidebar {
+
+  width:260px;
+
+  background:#fff;
+
+  border-right:1px solid #ddd;
+
+  padding:15px 10px;
+
+  overflow-y:auto;
+
+}
+
+
+
+body.dark .sidebar { background:#1e1e1e; border-color:#333; }
+
+
+
+/* SIDEBAR BUTTONS */
+
+.cat {
+
+  padding:10px 14px;
+
+  border-radius:8px;
+
+  cursor:pointer;
+
+  border-left:4px solid transparent;
+
+  margin-bottom: 5px;
+
+  font-weight: 500;
+
+  font-size: 14px;
+
+  transition: all 0.2s;
+
+}
+
+.cat:hover { background:#f1f5f9; }
+
+body.dark .cat:hover { background:#2a2a2a; }
+
+
+
+.cat.blue { border-left-color:var(--blue-strong); }
+
+.cat.green { border-left-color:var(--green-strong); }
+
+.cat.purple { border-left-color:var(--purple-strong); }
+
+.cat.pink { border-left-color:var(--pink-strong); }
+
+.cat.red { border-left-color:var(--red-strong); }
+
+
+
+.cat.active {
+
+  background:var(--primary) !important;
+
+  color:#fff;
+
+  border-left-color:var(--primary);
+
+  box-shadow: 0 2px 4px rgba(255,122,0,0.3);
+
+}
+
+
+
+/* MAIN CONTENT */
+
+.main { flex:1; overflow-y:auto; position: relative; }
+
+
+
+/* GROUPING & GRID */
+
+.main-container { 
+
+  padding: 20px; 
+
+  max-width: 1400px; 
+
+  margin: 0 auto; 
+
+}
+
+
+
+.group-section { margin-bottom: 40px; }
+
+
+
+.group-header {
+
+  font-size: 18px;
+
+  font-weight: bold;
+
+  color: var(--text);
+
+  margin-bottom: 15px;
+
+  padding: 10px 0;
+
+  border-bottom: 2px solid #ddd;
+
+  display: block;
+
+  /* หัวข้อติดขอบบนตอนเลื่อน */
+
+  position: sticky;
+
+  top: 0;
+
+  background: var(--bg);
+
+  z-index: 5;
+
+}
+
+body.dark .group-header { border-bottom-color: #444; }
+
+
+
+.card-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 15px;
+
+}
+
+
+
+/* Responsive */
+
+@media (max-width: 1200px) { .card-grid { grid-template-columns: repeat(3, 1fr); } }
+
+@media (max-width: 900px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
+
+@media (max-width: 600px) { .card-grid { grid-template-columns: repeat(1, 1fr); } .layout { flex-direction: column; } .sidebar { width: auto; height: 150px; border-right: none; border-bottom: 1px solid #ddd; } }
+
+
+
+/* CARD */
+
+.card {
+
+  background:var(--card-bg);
+
+  border-radius:10px;
+
+  overflow:hidden;
+
+  position:relative;
+
+  cursor:pointer;
+
+  transition:.15s;
+
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+
+  display: flex;
+
+  flex-direction: column;
+
+}
+
+.card:active { transform:scale(0.96); opacity:0.85; }
+
+.card:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+
+
+
+.card::before {
+
+  content:"";
+
+  position:absolute;
+
+  left:0;
+
+  top:0;
+
+  width:4px;
+
+  height:100%;
+
+}
+
+
+
+/* สีแถบข้างการ์ด */
+
+.card.blue::before { background:var(--blue-strong); }
+
+.card.green::before { background:var(--green-strong); }
+
+.card.purple::before { background:var(--purple-strong); }
+
+.card.pink::before { background:var(--pink-strong); }
+
+.card.red::before { background:var(--red-strong); }
+
+
+
+.actions {
+
+  position:absolute;
+
+  top:8px;
+
+  right:8px;
+
+  left: auto;
+
+  display:none;
+
+  gap:5px;
+
+  z-index:10;
+
+}
+
+.card:hover .actions { display:flex; }
+
+
+
+.btn-action {
+
+  background:rgba(0,0,0,0.7);
+
+  color:#fff;
+
+  padding:4px 8px;
+
+  border-radius:5px;
+
+  font-size:12px;
+
+  cursor:pointer;
+
+  transition: 0.2s;
+
+}
+
+.btn-action:hover { background:var(--primary); }
+
+
+
+.img-box {
+
+  width:100%;
+
+  aspect-ratio:1/1;
+
+  object-fit:cover;
+
+  border-bottom: 1px solid #eee;
+
+}
+
+
+
+.content {
+
+  padding:15px;
+
+  font-size:14px;
+
+  line-height: 1.5;
+
+  white-space: pre-wrap; /* เคารพการขึ้นบรรทัดใหม่ */
+
+  flex-grow: 1;
+
+  /* จัดการข้อความยาวเกินไป */
+
+  max-height: 150px; 
+
+  overflow-y: auto; 
+
+}
+
+
+
+.var {
+
+  background:var(--var-bg);
+
+  padding:2px 5px;
+
+  border-radius:4px;
+
+  font-weight:bold;
+
+  color: var(--primary);
+
+}
+
+
+
+/* UI ELEMENTS */
+
+.toast {
+
+  position:fixed;
+
+  bottom:20px;
+
+  left:50%;
+
+  transform:translateX(-50%);
+
+  background:#333;
+
+  color:#fff;
+
+  padding:12px 24px;
+
+  border-radius:50px;
+
+  opacity:0;
+
+  transition:.3s;
+
+  z-index: 100;
+
+  font-size: 14px;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+
+}
+
+
+
+.modal {
+
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(0,0,0,.6);
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  z-index: 1000;
+
+  backdrop-filter: blur(2px);
+
+}
+
+
+
+.modal-box {
+
+  background:var(--card-bg);
+
+  color: var(--text);
+
+  padding:24px;
+
+  border-radius:12px;
+
+  width:90%;
+
+  max-width: 400px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:15px;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+
+}
+
+
+
+.input-ui {
+
+  padding:12px;
+
+  border-radius:8px;
+
+  border:1px solid #ddd;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  background: var(--bg);
+
+  color: var(--text);
+
+  outline: none;
+
+}
+
+body.dark .input-ui { border-color: #444; }
+
+.input-ui:focus { border-color: var(--primary); }
+
+
+
+.btn-primary { padding:12px; background:var(--primary); color:#fff; border:none; border-radius:8px; cursor:pointer; font-weight:bold; font-size:14px; }
+
+.btn-secondary { padding:12px; background:#e0e0e0; color:#333; border:none; border-radius:8px; cursor:pointer; font-size:14px; }
+
+body.dark .btn-secondary { background:#444; color:#fff; }
+
+
+
+.loader {
+
+  text-align:center;
+
+  padding:50px;
+
+  color:#888;
+
+  font-size:16px;
+
+  animation: pulse 1.5s infinite;
+
+}
+
+@keyframes pulse { 0% {opacity:0.5;} 50% {opacity:1;} 100% {opacity:0.5;} }
+
+
+
+/* LOGIN PAGE */
+
+.login-overlay {
+
+  position: fixed;
+
+  inset: 0;
+
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  z-index: 9999;
+
+}
+
+.login-box {
+
+  background: rgba(255,255,255,0.05);
+
+  backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255,255,255,0.1);
+
+  border-radius: 16px;
+
+  padding: 40px;
+
+  width: 90%;
+
+  max-width: 360px;
+
+  text-align: center;
+
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+
+}
+
+.login-box h2 {
+
+  color: #fff;
+
+  margin: 0 0 8px 0;
+
+  font-size: 24px;
+
+}
+
+.login-box p {
+
+  color: rgba(255,255,255,0.5);
+
+  margin: 0 0 30px 0;
+
+  font-size: 14px;
+
+}
+
+.login-input {
+
+  width: 100%;
+
+  padding: 14px 16px;
+
+  border: 1px solid rgba(255,255,255,0.15);
+
+  border-radius: 10px;
+
+  background: rgba(255,255,255,0.08);
+
+  color: #fff;
+
+  font-size: 14px;
+
+  outline: none;
+
+  margin-bottom: 14px;
+
+  box-sizing: border-box;
+
+  transition: border-color 0.2s;
+
+}
+
+.login-input::placeholder { color: rgba(255,255,255,0.35); }
+
+.login-input:focus { border-color: var(--primary); }
+
+.login-btn {
+
+  width: 100%;
+
+  padding: 14px;
+
+  background: var(--primary);
+
+  color: #fff;
+
+  border: none;
+
+  border-radius: 10px;
+
+  font-size: 15px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  margin-top: 6px;
+
+  transition: opacity 0.2s;
+
+}
+
+.login-btn:hover { opacity: 0.85; }
+
+.login-error {
+
+  color: #ff6b6b;
+
+  font-size: 13px;
+
+  margin-top: 12px;
+
+  min-height: 20px;
+
+}
+
+</style>
+
 </head>
+
+
+
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="th"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1">&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1">&lt;title&gt;Zap789 PRO | Perfect Edition&lt;/title&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;style&gt;</p>
-<p class="p1">:root {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>--primary:#ff7a00;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>--bg:#f4f4f4;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>--card-bg:#ffffff;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>--text:#333;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>--var-bg:#eee;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>/* Color Palette */</p>
-<p class="p1"><span class="Apple-converted-space">  </span>--blue-soft:#e0f2fe;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>--blue-strong:#0284c7;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>--green-soft:#dcfce7;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>--green-strong:#16a34a;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>--purple-soft:#ede9fe;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>--purple-strong:#6d28d9;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>--pink-soft:#fce7f3;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>--pink-strong:#db2777;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>--red-soft:#fee2e2;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>--red-strong:#dc2626;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">body.dark { --bg:#121212; --card-bg:#1e1e1e; --text:#efefef; --var-bg:#333; }</p>
-<p class="p1">body { margin:0; font-family:sans-serif; background:var(--bg); color:var(--text); }</p>
-<p class="p2"><br></p>
-<p class="p1">/* Custom Scrollbar มินิมอล */</p>
-<p class="p1">::-webkit-scrollbar { width: 6px; height: 6px; }</p>
-<p class="p1">::-webkit-scrollbar-track { background: transparent; }</p>
-<p class="p1">::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }</p>
-<p class="p1">::-webkit-scrollbar-thumb:hover { background: var(--primary); }</p>
-<p class="p1">body.dark ::-webkit-scrollbar-thumb { background: #555; }</p>
-<p class="p2"><br></p>
-<p class="p1">/* HEADER */</p>
-<p class="p1">.header { background:var(--primary); padding:10px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }</p>
-<p class="p1">.top { display:flex; justify-content:space-between; align-items:center; max-width:1400px; margin:0 auto; }</p>
-<p class="p1">.search { padding:8px 15px; border-radius:8px; border:none; width:250px; outline:none; }</p>
-<p class="p2"><br></p>
-<p class="p1">/* LAYOUT */</p>
-<p class="p1">.layout { display:flex; height:calc(100vh - 55px); }</p>
-<p class="p2"><br></p>
-<p class="p1">.sidebar {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>width:260px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>background:#fff;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>border-right:1px solid #ddd;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>padding:15px 10px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>overflow-y:auto;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">body.dark .sidebar { background:#1e1e1e; border-color:#333; }</p>
-<p class="p2"><br></p>
-<p class="p1">/* SIDEBAR BUTTONS */</p>
-<p class="p1">.cat {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>padding:10px 14px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>border-radius:8px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>cursor:pointer;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>border-left:4px solid transparent;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>margin-bottom: 5px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>font-weight: 500;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>font-size: 14px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>transition: all 0.2s;</p>
-<p class="p1">}</p>
-<p class="p1">.cat:hover { background:#f1f5f9; }</p>
-<p class="p1">body.dark .cat:hover { background:#2a2a2a; }</p>
-<p class="p2"><br></p>
-<p class="p1">.cat.blue { border-left-color:var(--blue-strong); }</p>
-<p class="p1">.cat.green { border-left-color:var(--green-strong); }</p>
-<p class="p1">.cat.purple { border-left-color:var(--purple-strong); }</p>
-<p class="p1">.cat.pink { border-left-color:var(--pink-strong); }</p>
-<p class="p1">.cat.red { border-left-color:var(--red-strong); }</p>
-<p class="p2"><br></p>
-<p class="p1">.cat.active {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>background:var(--primary) !important;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>color:#fff;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>border-left-color:var(--primary);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>box-shadow: 0 2px 4px rgba(255,122,0,0.3);</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">/* MAIN CONTENT */</p>
-<p class="p1">.main { flex:1; overflow-y:auto; position: relative; }</p>
-<p class="p2"><br></p>
-<p class="p1">/* GROUPING &amp; GRID */</p>
-<p class="p1">.main-container {<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>padding: 20px;<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>max-width: 1400px;<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>margin: 0 auto;<span class="Apple-converted-space"> </span></p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">.group-section { margin-bottom: 40px; }</p>
-<p class="p2"><br></p>
-<p class="p1">.group-header {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>font-size: 18px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>font-weight: bold;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>color: var(--text);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>margin-bottom: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>padding: 10px 0;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>border-bottom: 2px solid #ddd;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>display: block;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>/* หัวข้อติดขอบบนตอนเลื่อน */</p>
-<p class="p1"><span class="Apple-converted-space">  </span>position: sticky;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>top: 0;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>background: var(--bg);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>z-index: 5;</p>
-<p class="p1">}</p>
-<p class="p1">body.dark .group-header { border-bottom-color: #444; }</p>
-<p class="p2"><br></p>
-<p class="p1">.card-grid {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>grid-template-columns: repeat(4, 1fr);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>gap: 15px;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">/* Responsive */</p>
-<p class="p1">@media (max-width: 1200px) { .card-grid { grid-template-columns: repeat(3, 1fr); } }</p>
-<p class="p1">@media (max-width: 900px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }</p>
-<p class="p1">@media (max-width: 600px) { .card-grid { grid-template-columns: repeat(1, 1fr); } .layout { flex-direction: column; } .sidebar { width: auto; height: 150px; border-right: none; border-bottom: 1px solid #ddd; } }</p>
-<p class="p2"><br></p>
-<p class="p1">/* CARD */</p>
-<p class="p1">.card {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>background:var(--card-bg);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>border-radius:10px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>overflow:hidden;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>position:relative;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>cursor:pointer;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>transition:.15s;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>box-shadow: 0 2px 5px rgba(0,0,0,0.05);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>flex-direction: column;</p>
-<p class="p1">}</p>
-<p class="p1">.card:active { transform:scale(0.96); opacity:0.85; }</p>
-<p class="p1">.card:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.1); }</p>
-<p class="p2"><br></p>
-<p class="p1">.card::before {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>content:"";</p>
-<p class="p1"><span class="Apple-converted-space">  </span>position:absolute;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>left:0;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>top:0;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>width:4px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>height:100%;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">/* สีแถบข้างการ์ด */</p>
-<p class="p1">.card.blue::before { background:var(--blue-strong); }</p>
-<p class="p1">.card.green::before { background:var(--green-strong); }</p>
-<p class="p1">.card.purple::before { background:var(--purple-strong); }</p>
-<p class="p1">.card.pink::before { background:var(--pink-strong); }</p>
-<p class="p1">.card.red::before { background:var(--red-strong); }</p>
-<p class="p2"><br></p>
-<p class="p1">.actions {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>position:absolute;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>top:8px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>right:8px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>left: auto;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>display:none;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>gap:5px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>z-index:10;</p>
-<p class="p1">}</p>
-<p class="p1">.card:hover .actions { display:flex; }</p>
-<p class="p2"><br></p>
-<p class="p1">.btn-action {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>background:rgba(0,0,0,0.7);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>color:#fff;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>padding:4px 8px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>border-radius:5px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>font-size:12px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>cursor:pointer;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>transition: 0.2s;</p>
-<p class="p1">}</p>
-<p class="p1">.btn-action:hover { background:var(--primary); }</p>
-<p class="p2"><br></p>
-<p class="p1">.img-box {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>width:100%;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>aspect-ratio:1/1;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>object-fit:cover;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>border-bottom: 1px solid #eee;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">.content {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>padding:15px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>font-size:14px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>line-height: 1.5;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>white-space: pre-wrap; /* เคารพการขึ้นบรรทัดใหม่ */</p>
-<p class="p1"><span class="Apple-converted-space">  </span>flex-grow: 1;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>/* จัดการข้อความยาวเกินไป */</p>
-<p class="p1"><span class="Apple-converted-space">  </span>max-height: 150px;<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>overflow-y: auto;<span class="Apple-converted-space"> </span></p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">.var {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>background:var(--var-bg);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>padding:2px 5px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>border-radius:4px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>font-weight:bold;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>color: var(--primary);</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">/* UI ELEMENTS */</p>
-<p class="p1">.toast {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>position:fixed;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>bottom:20px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>left:50%;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>transform:translateX(-50%);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>background:#333;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>color:#fff;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>padding:12px 24px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>border-radius:50px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>opacity:0;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>transition:.3s;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>z-index: 100;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>font-size: 14px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>box-shadow: 0 4px 10px rgba(0,0,0,0.2);</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">.modal {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>position:fixed;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>inset:0;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>background:rgba(0,0,0,.6);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>display:none;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>align-items:center;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>justify-content:center;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>z-index: 1000;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>backdrop-filter: blur(2px);</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">.modal-box {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>background:var(--card-bg);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>color: var(--text);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>padding:24px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>border-radius:12px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>width:90%;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>max-width: 400px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>display:flex;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>flex-direction:column;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>gap:15px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>box-shadow: 0 10px 25px rgba(0,0,0,0.2);</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">.input-ui {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>padding:12px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>border-radius:8px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>border:1px solid #ddd;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>font-family: inherit;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>font-size: 14px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>background: var(--bg);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>color: var(--text);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>outline: none;</p>
-<p class="p1">}</p>
-<p class="p1">body.dark .input-ui { border-color: #444; }</p>
-<p class="p1">.input-ui:focus { border-color: var(--primary); }</p>
-<p class="p2"><br></p>
-<p class="p1">.btn-primary { padding:12px; background:var(--primary); color:#fff; border:none; border-radius:8px; cursor:pointer; font-weight:bold; font-size:14px; }</p>
-<p class="p1">.btn-secondary { padding:12px; background:#e0e0e0; color:#333; border:none; border-radius:8px; cursor:pointer; font-size:14px; }</p>
-<p class="p1">body.dark .btn-secondary { background:#444; color:#fff; }</p>
-<p class="p2"><br></p>
-<p class="p1">.loader {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>text-align:center;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>padding:50px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>color:#888;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>font-size:16px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>animation: pulse 1.5s infinite;</p>
-<p class="p1">}</p>
-<p class="p1">@keyframes pulse { 0% {opacity:0.5;} 50% {opacity:1;} 100% {opacity:0.5;} }</p>
-<p class="p1">&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;div class="header"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="top"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div style="font-weight:bold;color:white;font-size:18px;"&gt;🔥 Zap789 PRO&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;input id="search" class="search" placeholder="ค้นหาข้อความ... (พิมพ์แล้วค้นหาทันที)" oninput="render()" autofocus&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;button onclick="openModal()" style="padding:8px 15px; border-radius:6px; border:none; cursor:pointer; font-weight:bold; color:var(--primary);"&gt;+ เพิ่มข้อมูล&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;button onclick="toggleDark()" style="padding:8px 12px; border-radius:6px; border:none; cursor:pointer; margin-left:5px; background:rgba(0,0,0,0.2); color:white;"&gt;🌙&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;div class="layout"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="sidebar"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="cats"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div style="color:#888; text-align:center; padding:20px; font-size:12px;"&gt;กำลังโหลดเมนู...&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="main"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="grid" class="main-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="loader"&gt;⏳ กำลังซิงค์ข้อมูลจากระบบ...&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;div id="toast" class="toast"&gt;✅ คัดลอกสำเร็จ&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;div id="modal" class="modal"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="modal-box"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h3 style="margin:0; font-size:18px;"&gt;จัดการข้อความ&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;input id="catInput" class="input-ui" placeholder="ระบุหมวดหมู่ (เช่น สมัคร, ฝากเงิน)"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;textarea id="textInput" class="input-ui" rows="5" placeholder="พิมพ์ข้อความที่นี่...&amp;#10;💡 ใส่ {name} ตรงจุดที่ต้องการให้แอดมินพิมพ์ชื่อลูกค้า"&gt;&lt;/textarea&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div style="font-size: 12px; color: #888;"&gt;แนบรูปภาพ (ถ้ามี):&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;input type="file" id="imgInput" accept="image/*" class="input-ui" style="padding:8px;"&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div style="display:flex; gap:10px; margin-top:5px;"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;button onclick="save()" class="btn-primary" style="flex:1;"&gt;💾 บันทึกข้อมูล&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;button onclick="closeModal()" class="btn-secondary" style="flex:1;"&gt;ยกเลิก&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;script&gt;</p>
-<p class="p1">const API_URL="https://script.google.com/macros/s/AKfycbxHezmPZRW5x-PIEx7iPK5joGxshgIG_aN7wF0NvAl0FkIS0fgqnEKOI8oYR1RZN5cf/exec";</p>
-<p class="p2"><br></p>
-<p class="p1">let DATA=[];</p>
-<p class="p1">let currentCat="ทั้งหมด";</p>
-<p class="p1">let editIndex=null;</p>
-<p class="p2"><br></p>
-<p class="p1">/* ===== COLOR MAP (จัดหมวดหมู่สี) ===== */</p>
-<p class="p1">const COLOR_MAP = {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"ทั้งหมด":"blue",</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"สมัคร":"blue",</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"ขอข้อมูล / เปลี่ยนรหัส":"blue",</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"เปลี่ยนบัญชี":"blue",</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"ปิดแชท":"blue",</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"ทางเข้า":"blue",</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"ค้างเดิมพัน / เครดิต":"blue",</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>"ฝากเงิน":"green",</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"QR Code":"green",</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>"ถอนเงิน":"purple",</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>"เครดิตฟรี / โปร":"pink",</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"เกม / แนะนำ":"pink",</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"กำลังใจ (เต็ม)":"pink",</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"ทักหลายไลน์":"pink",</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>"ฝากปัญหา":"red",</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"บัญชีไม่ตรง":"red",</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"ถอนปัญหา":"red",</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"เข้าเล่นไม่ได้":"red",</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"VPN / เน็ต":"red",</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"ลูกค้าด่า":"red"</p>
-<p class="p1">};</p>
-<p class="p2"><br></p>
-<p class="p1">function getColor(cat){</p>
-<p class="p1"><span class="Apple-converted-space">  </span>if(COLOR_MAP[cat]) return COLOR_MAP[cat];</p>
-<p class="p1"><span class="Apple-converted-space">  </span>// Fallback</p>
-<p class="p1"><span class="Apple-converted-space">  </span>for(const key in COLOR_MAP){</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if(cat.includes(key)){ return COLOR_MAP[key]; }</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>return "blue";</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">/* ===== INIT LOAD ===== */</p>
-<p class="p1">async function init(){</p>
-<p class="p1"><span class="Apple-converted-space">  </span>try {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const res=await fetch(API_URL+"?t="+Date.now());</p>
-<p class="p1"><span class="Apple-converted-space">    </span>DATA=await res.json();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>render();</p>
-<p class="p1"><span class="Apple-converted-space">  </span>} catch (error) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>console.error("Error loading data:", error);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById("grid").innerHTML = `&lt;div class="loader" style="color:red;"&gt;❌ ไม่สามารถเชื่อมต่อฐานข้อมูลได้ กรุณารีเฟรชหน้าเว็บ&lt;/div&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">/* ===== TOAST &amp; COPY ===== */</p>
-<p class="p1">function showToast(msg){</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const t=document.getElementById("toast");</p>
-<p class="p1"><span class="Apple-converted-space">  </span>t.innerText=msg;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>t.style.opacity=1;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>setTimeout(()=&gt;t.style.opacity=0,1500);</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">async function copyText(text){</p>
-<p class="p1"><span class="Apple-converted-space">  </span>try {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>await navigator.clipboard.writeText(text);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>showToast("✅ คัดลอกข้อความแล้ว");</p>
-<p class="p1"><span class="Apple-converted-space">  </span>} catch (err) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>console.error('Failed to copy: ', err);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Fallback</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const textArea = document.createElement("textarea");</p>
-<p class="p1"><span class="Apple-converted-space">    </span>textArea.value = text;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.body.appendChild(textArea);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>textArea.select();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.execCommand("copy");</p>
-<p class="p1"><span class="Apple-converted-space">    </span>textArea.remove();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>showToast("✅ คัดลอกข้อความแล้ว");</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">async function copyImage(url){</p>
-<p class="p1"><span class="Apple-converted-space">  </span>try {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const res=await fetch(url);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const blob=await res.blob();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>await navigator.clipboard.write([new ClipboardItem({[blob.type]:blob})]);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>showToast("🖼️ คัดลอกรูปภาพแล้ว");</p>
-<p class="p1"><span class="Apple-converted-space">  </span>} catch (err) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>console.error('Failed to copy image: ', err);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>showToast("❌ ไม่สามารถคัดลอกรูปได้อัตโนมัติ");</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">/* ===== RENDER FUNCTION ===== */</p>
-<p class="p1">function render(){</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const s=search.value.toLowerCase();</p>
-<p class="p1"><span class="Apple-converted-space">  </span>let catsSet=new Set(["ทั้งหมด"]);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>// 1. โครงสร้างกลุ่ม</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const groups = {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>blue: { title: "💳 บัญชี ข้อมูล และ ทางเข้า", cards: [] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>green: { title: "💰 การเงิน ฝากเงิน", cards: [] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>purple: { title: "🔄 การถอนเงิน", cards: [] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>pink: { title: "💖 ทั่วไป โปรโมท และ กำลังใจ", cards: [] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>red: { title: "⚠️ ปัญหาขัดข้อง และ ลูกค้าคอมเพลน", cards: [] }</p>
-<p class="p1"><span class="Apple-converted-space">  </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>// 2. จัดการข้อมูล</p>
-<p class="p1"><span class="Apple-converted-space">  </span>DATA.forEach((r,i)=&gt;{</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const [cat,text,status,img]=r;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if(status==="deleted") return;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>catsSet.add(cat);</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// กรอง</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if(currentCat!=="ทั้งหมด" &amp;&amp; cat!==currentCat) return;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if(s &amp;&amp; !text.toLowerCase().includes(s)) return;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>const color = getColor(cat);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// HTML การ์ด</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const cardHTML = `</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="card ${color}" onclick="copyText(\`${text.replace(/`/g, '\\`')}\`)"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="actions"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="btn-action" onclick="event.stopPropagation();edit(${i})"&gt;✏️ แก้ไข&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="btn-action" onclick="event.stopPropagation();removeItem(${i})"&gt;🗑️ ลบ&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>${img ? `&lt;img src="${img}" class="img-box" onclick="event.stopPropagation();copyImage('${img}')"&gt;` : ""}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="content"&gt;${text.replace(/{name}/g,'&lt;span class="var"&gt;{name}&lt;/span&gt;')}&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;`;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>if(groups[color]) { groups[color].cards.push(cardHTML); }</p>
-<p class="p1"><span class="Apple-converted-space">  </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>// 3. วาด Grid และ Section</p>
-<p class="p1"><span class="Apple-converted-space">  </span>let html="";</p>
-<p class="p1"><span class="Apple-converted-space">  </span>Object.keys(groups).forEach(key =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const g = groups[key];</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if(g.cards.length &gt; 0) {<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">      </span>html += `</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="group-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="group-header"&gt;${g.title} &lt;span style="font-size:12px; color:#888; font-weight:normal;"&gt;(${g.cards.length})&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>${g.cards.join("")}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>if(html==="") html="&lt;div style='text-align:center; padding:50px; color:#888; font-size:16px;'&gt;🔍 ไม่พบข้อความที่คุณค้นหา&lt;/div&gt;";</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById("grid").innerHTML=html;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>// 4. วาด Sidebar Menu</p>
-<p class="p1"><span class="Apple-converted-space">  </span>let cHTML="";</p>
-<p class="p1"><span class="Apple-converted-space">  </span>catsSet.forEach(c=&gt;{</p>
-<p class="p1"><span class="Apple-converted-space">    </span>cHTML+=`</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="cat ${getColor(c)} ${c===currentCat?"active":""}"<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">      </span>onclick="currentCat='${c}';render()"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>${c}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>});</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById("cats").innerHTML=cHTML;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">/* ===== MODAL &amp; CRUD ===== */</p>
-<p class="p1">function openModal(){<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>editIndex=null;<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('catInput').value = currentCat !== "ทั้งหมด" ? currentCat : "";</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('textInput').value = "";</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('imgInput').value = "";</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('modal').style.display="flex";<span class="Apple-converted-space"> </span></p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">function closeModal(){ document.getElementById('modal').style.display="none"; }</p>
-<p class="p2"><br></p>
-<p class="p1">function edit(i){</p>
-<p class="p1"><span class="Apple-converted-space">  </span>editIndex=i;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('catInput').value=DATA[i][0];</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('textInput').value=DATA[i][1];</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('imgInput').value = "";<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('modal').style.display="flex";</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">async function removeItem(i){</p>
-<p class="p1"><span class="Apple-converted-space">  </span>if(confirm("🗑️ คุณแน่ใจหรือไม่ว่าต้องการลบข้อความนี้? (การลบจะไม่สามารถกู้คืนได้)")){</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById("grid").innerHTML = `&lt;div class="loader"&gt;กำลังลบข้อมูล...&lt;/div&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>await fetch(API_URL,{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>method:"POST",</p>
-<p class="p1"><span class="Apple-converted-space">      </span>body:JSON.stringify({action:"delete",index:i})</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p1"><span class="Apple-converted-space">    </span>init();</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">function save(){</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const imgInput = document.getElementById('imgInput');</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const file=imgInput.files[0];</p>
-<p class="p1"><span class="Apple-converted-space">  </span>if(file){</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const reader=new FileReader();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>reader.onload=e=&gt;executeSave(e.target.result);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>reader.readAsDataURL(file);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}else{</p>
-<p class="p1"><span class="Apple-converted-space">    </span>executeSave(null);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">async function executeSave(img){</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const catVal = document.getElementById('catInput').value.trim();</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const textVal = document.getElementById('textInput').value.trim();</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>if(!catVal || !textVal) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>alert("⚠️ กรุณาระบุหมวดหมู่และข้อความให้ครบถ้วน");</p>
-<p class="p1"><span class="Apple-converted-space">    </span>return;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('modal').style.display="none";<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById("grid").innerHTML = `&lt;div class="loader"&gt;กำลังบันทึกข้อมูล...&lt;/div&gt;`;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>await fetch(API_URL,{</p>
-<p class="p1"><span class="Apple-converted-space">    </span>method:"POST",</p>
-<p class="p1"><span class="Apple-converted-space">    </span>body:JSON.stringify({</p>
-<p class="p1"><span class="Apple-converted-space">      </span>action:editIndex!==null?"edit":"add",</p>
-<p class="p1"><span class="Apple-converted-space">      </span>index:editIndex,</p>
-<p class="p1"><span class="Apple-converted-space">      </span>cat:catVal,</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text:textVal,</p>
-<p class="p1"><span class="Apple-converted-space">      </span>image:img</p>
-<p class="p1"><span class="Apple-converted-space">    </span>})</p>
-<p class="p1"><span class="Apple-converted-space">  </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>init();</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">/* ===== THEME ===== */</p>
-<p class="p1">function toggleDark(){</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.body.classList.toggle("dark");</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const isDark = document.body.classList.contains("dark");</p>
-<p class="p1"><span class="Apple-converted-space">  </span>localStorage.setItem("zap789_theme", isDark ? "dark" : "light");</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">if(localStorage.getItem("zap789_theme") === "dark"){</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.body.classList.add("dark");</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">init();</p>
-<p class="p1">&lt;/script&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+
+
+<!-- LOGIN PAGE -->
+
+<div id="loginOverlay" class="login-overlay">
+
+  <div class="login-box">
+
+    <h2>🔥 Zap789 PRO</h2>
+
+    <p>กรุณาเข้าสู่ระบบเพื่อดำเนินการต่อ</p>
+
+    <input id="loginUser" class="login-input" type="text" placeholder="ชื่อผู้ใช้ (Username)" autofocus>
+
+    <input id="loginPass" class="login-input" type="password" placeholder="รหัสผ่าน (Password)">
+
+    <button class="login-btn" onclick="doLogin()">เข้าสู่ระบบ</button>
+
+    <div id="loginError" class="login-error"></div>
+
+  </div>
+
+</div>
+
+
+
+<div class="header">
+
+  <div class="top">
+
+    <div style="font-weight:bold;color:white;font-size:18px;">🔥 Zap789 PRO</div>
+
+    <input id="search" class="search" placeholder="ค้นหาข้อความ... (พิมพ์แล้วค้นหาทันที)" oninput="render()" autofocus>
+
+    <div>
+
+      <button onclick="openModal()" style="padding:8px 15px; border-radius:6px; border:none; cursor:pointer; font-weight:bold; color:var(--primary);">+ เพิ่มข้อมูล</button>
+
+      <button onclick="toggleDark()" style="padding:8px 12px; border-radius:6px; border:none; cursor:pointer; margin-left:5px; background:rgba(0,0,0,0.2); color:white;">🌙</button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<div class="layout">
+
+  <div class="sidebar">
+
+    <div id="cats">
+
+      <div style="color:#888; text-align:center; padding:20px; font-size:12px;">กำลังโหลดเมนู...</div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="main">
+
+    <div id="grid" class="main-container">
+
+      <div class="loader">⏳ กำลังซิงค์ข้อมูลจากระบบ...</div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<div id="toast" class="toast">✅ คัดลอกสำเร็จ</div>
+
+
+
+<div id="modal" class="modal">
+
+  <div class="modal-box">
+
+    <h3 style="margin:0; font-size:18px;">จัดการข้อความ</h3>
+
+    <input id="catInput" class="input-ui" placeholder="ระบุหมวดหมู่ (เช่น สมัคร, ฝากเงิน)">
+
+    <textarea id="textInput" class="input-ui" rows="5" placeholder="พิมพ์ข้อความที่นี่...&#10;💡 ใส่ {name} ตรงจุดที่ต้องการให้แอดมินพิมพ์ชื่อลูกค้า"></textarea>
+
+    <div style="font-size: 12px; color: #888;">แนบรูปภาพ (ถ้ามี):</div>
+
+    <input type="file" id="imgInput" accept="image/*" class="input-ui" style="padding:8px;">
+
+    
+
+    <div style="display:flex; gap:10px; margin-top:5px;">
+
+      <button onclick="save()" class="btn-primary" style="flex:1;">💾 บันทึกข้อมูล</button>
+
+      <button onclick="closeModal()" class="btn-secondary" style="flex:1;">ยกเลิก</button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<script>
+
+
+const VALID_USERS = [
+
+  { username: "admin", password: "1234" },
+
+  { username: "adminm", password: "m778899" },
+  { username: "admin789", password: "4578zabet8" },
+  { username: "admin02", password: "4578zabet8" },
+  { username: "admin03", password: "4578zabet8" }
+];
+
+
+
+function doLogin() {
+
+  const u = document.getElementById("loginUser").value.trim();
+
+  const p = document.getElementById("loginPass").value;
+
+  const err = document.getElementById("loginError");
+
+
+
+  if (!u || !p) {
+
+    err.textContent = "⚠️ กรุณากรอกชื่อผู้ใช้และรหัสผ่าน";
+
+    return;
+
+  }
+
+
+
+  const found = VALID_USERS.find(v => v.username === u && v.password === p);
+
+  if (found) {
+
+    const expiry = Date.now() + (3 * 24 * 60 * 60 * 1000); // 3 วัน
+
+    localStorage.setItem("zap789_logged", expiry);
+
+    document.getElementById("loginOverlay").style.display = "none";
+
+  } else {
+
+    err.textContent = "❌ ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง";
+
+  }
+
+}
+
+
+
+// กด Enter เพื่อ Login
+
+document.getElementById("loginPass").addEventListener("keydown", e => { if(e.key === "Enter") doLogin(); });
+
+document.getElementById("loginUser").addEventListener("keydown", e => { if(e.key === "Enter") document.getElementById("loginPass").focus(); });
+
+
+
+// ถ้าเคย login แล้วและยังไม่หมดอายุ (3 วัน)
+
+const loginExpiry = localStorage.getItem("zap789_logged");
+
+if (loginExpiry && Date.now() < Number(loginExpiry)) {
+
+  document.getElementById("loginOverlay").style.display = "none";
+
+} else {
+
+  localStorage.removeItem("zap789_logged");
+
+}
+
+
+
+const API_URL="https://script.google.com/macros/s/AKfycbxHezmPZRW5x-PIEx7iPK5joGxshgIG_aN7wF0NvAl0FkIS0fgqnEKOI8oYR1RZN5cf/exec";
+
+
+
+let DATA=[];
+
+let currentCat="ทั้งหมด";
+
+let editIndex=null;
+
+
+
+/* ===== COLOR MAP (จัดหมวดหมู่สี) ===== */
+
+const COLOR_MAP = {
+
+  "ทั้งหมด":"blue",
+
+  "สมัคร":"blue",
+
+  "ขอข้อมูล / เปลี่ยนรหัส":"blue",
+
+  "เปลี่ยนบัญชี":"blue",
+
+  "ปิดแชท":"blue",
+
+  "ทางเข้า":"blue",
+
+  "ค้างเดิมพัน / เครดิต":"blue",
+
+
+
+  "ฝากเงิน":"green",
+
+  "QR Code":"green",
+
+
+
+  "ถอนเงิน":"purple",
+
+
+
+  "เครดิตฟรี / โปร":"pink",
+
+  "เกม / แนะนำ":"pink",
+
+  "กำลังใจ (เต็ม)":"pink",
+
+  "ทักหลายไลน์":"pink",
+
+
+
+  "ฝากปัญหา":"red",
+
+  "บัญชีไม่ตรง":"red",
+
+  "ถอนปัญหา":"red",
+
+  "เข้าเล่นไม่ได้":"red",
+
+  "VPN / เน็ต":"red",
+
+  "ลูกค้าด่า":"red"
+
+};
+
+
+
+function getColor(cat){
+
+  if(COLOR_MAP[cat]) return COLOR_MAP[cat];
+
+  // Fallback
+
+  for(const key in COLOR_MAP){
+
+    if(cat.includes(key)){ return COLOR_MAP[key]; }
+
+  }
+
+  return "blue";
+
+}
+
+
+
+/* ===== INIT LOAD ===== */
+
+async function init(){
+
+  try {
+
+    const res=await fetch(API_URL+"?t="+Date.now());
+
+    DATA=await res.json();
+
+    render();
+
+  } catch (error) {
+
+    console.error("Error loading data:", error);
+
+    document.getElementById("grid").innerHTML = `<div class="loader" style="color:red;">❌ ไม่สามารถเชื่อมต่อฐานข้อมูลได้ กรุณารีเฟรชหน้าเว็บ</div>`;
+
+  }
+
+}
+
+
+
+/* ===== TOAST & COPY ===== */
+
+function showToast(msg){
+
+  const t=document.getElementById("toast");
+
+  t.innerText=msg;
+
+  t.style.opacity=1;
+
+  setTimeout(()=>t.style.opacity=0,1500);
+
+}
+
+
+
+async function copyText(text){
+
+  try {
+
+    await navigator.clipboard.writeText(text);
+
+    showToast("✅ คัดลอกข้อความแล้ว");
+
+  } catch (err) {
+
+    console.error('Failed to copy: ', err);
+
+    // Fallback
+
+    const textArea = document.createElement("textarea");
+
+    textArea.value = text;
+
+    document.body.appendChild(textArea);
+
+    textArea.select();
+
+    document.execCommand("copy");
+
+    textArea.remove();
+
+    showToast("✅ คัดลอกข้อความแล้ว");
+
+  }
+
+}
+
+
+
+async function copyImage(url){
+
+  try {
+
+    const res=await fetch(url);
+
+    const blob=await res.blob();
+
+    await navigator.clipboard.write([new ClipboardItem({[blob.type]:blob})]);
+
+    showToast("🖼️ คัดลอกรูปภาพแล้ว");
+
+  } catch (err) {
+
+    console.error('Failed to copy image: ', err);
+
+    showToast("❌ ไม่สามารถคัดลอกรูปได้อัตโนมัติ");
+
+  }
+
+}
+
+
+
+/* ===== RENDER FUNCTION ===== */
+
+function render(){
+
+  const s=search.value.toLowerCase();
+
+  let catsSet=new Set(["ทั้งหมด"]);
+
+
+
+  // 1. โครงสร้างกลุ่ม
+
+  const groups = {
+
+    blue: { title: "💳 บัญชี ข้อมูล และ ทางเข้า", cards: [] },
+
+    green: { title: "💰 การเงิน ฝากเงิน", cards: [] },
+
+    purple: { title: "🔄 การถอนเงิน", cards: [] },
+
+    pink: { title: "💖 ทั่วไป โปรโมท และ กำลังใจ", cards: [] },
+
+    red: { title: "⚠️ ปัญหาขัดข้อง และ ลูกค้าคอมเพลน", cards: [] }
+
+  };
+
+
+
+  // 2. จัดการข้อมูล
+
+  DATA.forEach((r,i)=>{
+
+    const [cat,text,status,img]=r;
+
+    if(status==="deleted") return;
+
+
+
+    catsSet.add(cat);
+
+    
+
+    // กรอง
+
+    if(currentCat!=="ทั้งหมด" && cat!==currentCat) return;
+
+    if(s && !text.toLowerCase().includes(s)) return;
+
+
+
+    const color = getColor(cat);
+
+
+
+    // HTML การ์ด
+
+    const cardHTML = `
+
+    <div class="card ${color}" onclick="copyText(\`${text.replace(/`/g, '\\`')}\`)">
+
+      <div class="actions">
+
+        <div class="btn-action" onclick="event.stopPropagation();edit(${i})">✏️ แก้ไข</div>
+
+        <div class="btn-action" onclick="event.stopPropagation();removeItem(${i})">🗑️ ลบ</div>
+
+      </div>
+
+      ${img ? `<img src="${img}" class="img-box" onclick="event.stopPropagation();copyImage('${img}')">` : ""}
+
+      <div class="content">${text.replace(/{name}/g,'<span class="var">{name}</span>')}</div>
+
+    </div>`;
+
+
+
+    if(groups[color]) { groups[color].cards.push(cardHTML); }
+
+  });
+
+
+
+  // 3. วาด Grid และ Section
+
+  let html="";
+
+  Object.keys(groups).forEach(key => {
+
+    const g = groups[key];
+
+    if(g.cards.length > 0) { 
+
+      html += `
+
+      <div class="group-section">
+
+        <div class="group-header">${g.title} <span style="font-size:12px; color:#888; font-weight:normal;">(${g.cards.length})</span></div>
+
+        <div class="card-grid">
+
+          ${g.cards.join("")}
+
+        </div>
+
+      </div>
+
+      `;
+
+    }
+
+  });
+
+
+
+  if(html==="") html="<div style='text-align:center; padding:50px; color:#888; font-size:16px;'>🔍 ไม่พบข้อความที่คุณค้นหา</div>";
+
+  document.getElementById("grid").innerHTML=html;
+
+
+
+  // 4. วาด Sidebar Menu
+
+  let cHTML="";
+
+  catsSet.forEach(c=>{
+
+    cHTML+=`
+
+      <div class="cat ${getColor(c)} ${c===currentCat?"active":""}" 
+
+      onclick="currentCat='${c}';render()">
+
+      ${c}
+
+      </div>
+
+    `;
+
+  });
+
+  document.getElementById("cats").innerHTML=cHTML;
+
+}
+
+
+
+/* ===== MODAL & CRUD ===== */
+
+function openModal(){ 
+
+  editIndex=null; 
+
+  document.getElementById('catInput').value = currentCat !== "ทั้งหมด" ? currentCat : "";
+
+  document.getElementById('textInput').value = "";
+
+  document.getElementById('imgInput').value = "";
+
+  document.getElementById('modal').style.display="flex"; 
+
+}
+
+
+
+function closeModal(){ document.getElementById('modal').style.display="none"; }
+
+
+
+function edit(i){
+
+  editIndex=i;
+
+  document.getElementById('catInput').value=DATA[i][0];
+
+  document.getElementById('textInput').value=DATA[i][1];
+
+  document.getElementById('imgInput').value = ""; 
+
+  document.getElementById('modal').style.display="flex";
+
+}
+
+
+
+async function removeItem(i){
+
+  if(confirm("🗑️ คุณแน่ใจหรือไม่ว่าต้องการลบข้อความนี้? (การลบจะไม่สามารถกู้คืนได้)")){
+
+    document.getElementById("grid").innerHTML = `<div class="loader">กำลังลบข้อมูล...</div>`;
+
+    await fetch(API_URL,{
+
+      method:"POST",
+
+      body:JSON.stringify({action:"delete",index:i})
+
+    });
+
+    init();
+
+  }
+
+}
+
+
+
+function save(){
+
+  const imgInput = document.getElementById('imgInput');
+
+  const file=imgInput.files[0];
+
+  if(file){
+
+    const reader=new FileReader();
+
+    reader.onload=e=>executeSave(e.target.result);
+
+    reader.readAsDataURL(file);
+
+  }else{
+
+    executeSave(null);
+
+  }
+
+}
+
+
+
+async function executeSave(img){
+
+  const catVal = document.getElementById('catInput').value.trim();
+
+  const textVal = document.getElementById('textInput').value.trim();
+
+  
+
+  if(!catVal || !textVal) {
+
+    alert("⚠️ กรุณาระบุหมวดหมู่และข้อความให้ครบถ้วน");
+
+    return;
+
+  }
+
+
+
+  document.getElementById('modal').style.display="none"; 
+
+  document.getElementById("grid").innerHTML = `<div class="loader">กำลังบันทึกข้อมูล...</div>`;
+
+
+
+  await fetch(API_URL,{
+
+    method:"POST",
+
+    body:JSON.stringify({
+
+      action:editIndex!==null?"edit":"add",
+
+      index:editIndex,
+
+      cat:catVal,
+
+      text:textVal,
+
+      image:img
+
+    })
+
+  });
+
+
+
+  init();
+
+}
+
+
+
+/* ===== THEME ===== */
+
+function toggleDark(){
+
+  document.body.classList.toggle("dark");
+
+  const isDark = document.body.classList.contains("dark");
+
+  localStorage.setItem("zap789_theme", isDark ? "dark" : "light");
+
+}
+
+
+
+if(localStorage.getItem("zap789_theme") === "dark"){
+
+  document.body.classList.add("dark");
+
+}
+
+
+
+init();
+
+</script>
+
+
+
 </body>
+
 </html>
